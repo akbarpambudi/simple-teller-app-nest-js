@@ -1,4 +1,4 @@
-import { Entity, PrimaryColumn, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, PrimaryColumn, Column } from 'typeorm';
 
 @Entity()
 export class Account {
@@ -8,13 +8,8 @@ export class Account {
   accountNumber: string;
   @Column()
   balance: number;
-}
-
-export class AccountNumberSequence {
-  @PrimaryGeneratedColumn()
-  id: number;
   @Column()
-  sequenceNumber: number;
+  customerId: string;
   @Column()
-  prefix: string;
+  creator: string;
 }
