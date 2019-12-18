@@ -1,6 +1,6 @@
 import { AccountService, AccountNumberGenerator } from './interfaces';
 import { Injectable, Inject } from '@nestjs/common';
-import { AccountRegistrationDto } from '../dto/account.dto';
+import { AccountRegistrationDto, AccountDto } from '../dto/account.dto';
 import { AccountRepository } from './../repository/account.repository';
 import { Account } from './../entities/account.entity';
 import { ACCOUNT_NUMBER_GENERATOR } from '../di-token.constant';
@@ -23,5 +23,15 @@ export class AccountServiceImpl implements AccountService {
     account.customerId = accountRegistration.customerId;
     account.id = accountRegistration.id;
     await this.repository.save(account);
+  }
+
+  async getAccountNumberById(id: string): Promise<AccountDto> {
+    const account = await this.repository.findOne(id);
+    if (account == null) throw new Error(`customer with id ${id} not found`);
+    return {
+      accountNumber: account.accountNumber,
+      balance: account.balance,
+      id: account.id,
+    };
   }
 }
