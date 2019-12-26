@@ -25,7 +25,7 @@ export class AccountServiceImpl implements AccountService {
     await this.repository.save(account);
   }
 
-  async getAccountNumberById(id: string): Promise<AccountDto> {
+  async getAccountById(id: string): Promise<AccountDto> {
     const account = await this.repository.findOne(id);
     if (account == null) throw new Error(`customer with id ${id} not found`);
     return {

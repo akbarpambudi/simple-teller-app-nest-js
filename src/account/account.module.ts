@@ -5,12 +5,19 @@ import { Account } from './entities/account.entity';
 import { AccountNumberSequence } from './entities/account-number-sequence.entity';
 import { AccountServiceImpl } from './services/account.service';
 import { AccountNumberSequenceService } from './services/account-number-sequence.service';
-import { ACCOUNT_SERVICE, ACCOUNT_NUMBER_GENERATOR } from './di-token.constant';
+import {
+  ACCOUNT_SERVICE,
+  ACCOUNT_NUMBER_GENERATOR,
+  ACCOUNT_TRANSACTION_SERVICE,
+} from './di-token.constant';
 import { SharedModule } from 'src/shared/shared.module';
+import { AccountTransactionServiceImpl } from './services/account-transaction.service';
+import { AccountTransactionController } from './controllers/account-transaction.controller';
+import { AccountRepository } from './repository/account.repository';
 @Module({
-  controllers: [AccountController],
+  controllers: [AccountController, AccountTransactionController],
   imports: [
-    TypeOrmModule.forFeature([Account, AccountNumberSequence]),
+    TypeOrmModule.forFeature([AccountRepository, AccountNumberSequence]),
     SharedModule,
   ],
   providers: [
@@ -18,6 +25,10 @@ import { SharedModule } from 'src/shared/shared.module';
     {
       provide: ACCOUNT_NUMBER_GENERATOR,
       useClass: AccountNumberSequenceService,
+    },
+    {
+      provide: ACCOUNT_TRANSACTION_SERVICE,
+      useClass: AccountTransactionServiceImpl,
     },
   ],
 })

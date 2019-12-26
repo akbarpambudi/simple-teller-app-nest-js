@@ -359,6 +359,13 @@
     ts-morph "^4.0.0"
     typescript "3.4.5"
 
+"@nestjs/swagger@^4.0.9":
+  version "4.0.9"
+  resolved "https://registry.npmjs.org/@nestjs/swagger/-/swagger-4.0.9.tgz#dfa2105568515bea837b9119d0b94a8763a7e616"
+  dependencies:
+    lodash "4.17.15"
+    path-to-regexp "6.1.0"
+
 "@nestjs/testing@^6.7.1":
   version "6.10.11"
   resolved "https://registry.npmjs.org/@nestjs/testing/-/testing-6.10.11.tgz#ded7efb9a448799e4307cb95c892047c3b4c8485"
@@ -3459,7 +3466,7 @@ lodash.toarray@^4.4.0:
   version "4.4.0"
   resolved "https://registry.npmjs.org/lodash.toarray/-/lodash.toarray-4.4.0.tgz#24c4bfcd6b2fba38bfd0594db1179d8e9b656561"
 
-lodash@^4.17.13, lodash@^4.17.15:
+lodash@4.17.15, lodash@^4.17.13, lodash@^4.17.15:
   version "4.17.15"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
 
@@ -4141,6 +4148,10 @@ path-parse@^1.0.6:
 path-to-regexp@0.1.7:
   version "0.1.7"
   resolved "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-0.1.7.tgz#df604178005f522f15eb4490e7247a1bfaa67f8c"
+
+path-to-regexp@6.1.0:
+  version "6.1.0"
+  resolved "https://registry.npmjs.org/path-to-regexp/-/path-to-regexp-6.1.0.tgz#0b18f88b7a0ce0bfae6a25990c909ab86f512427"
 
 path-type@^3.0.0:
   version "3.0.0"
@@ -5088,6 +5099,16 @@ supports-color@^7.1.0:
   resolved "https://registry.npmjs.org/supports-color/-/supports-color-7.1.0.tgz#68e32591df73e25ad1c4b49108a2ec507962bfd1"
   dependencies:
     has-flag "^4.0.0"
+
+swagger-ui-dist@^3.18.1:
+  version "3.24.3"
+  resolved "https://registry.npmjs.org/swagger-ui-dist/-/swagger-ui-dist-3.24.3.tgz#99754d11b0ddd314a1a50db850acb415e4b0a0c6"
+
+swagger-ui-express@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.npmjs.org/swagger-ui-express/-/swagger-ui-express-4.1.2.tgz#fa4ca5337bce207c760a0b9340348159ebf8ffa4"
+  dependencies:
+    swagger-ui-dist "^3.18.1"
 
 symbol-observable@1.2.0:
   version "1.2.0"

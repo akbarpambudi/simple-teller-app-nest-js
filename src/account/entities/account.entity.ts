@@ -12,4 +12,12 @@ export class Account {
   customerId: string;
   @Column()
   creator: string;
+
+  debit(amount: number): void {
+    this.balance -= amount;
+  }
+
+  credit(amount: number): void {
+    this.balance += amount;
+  }
 }

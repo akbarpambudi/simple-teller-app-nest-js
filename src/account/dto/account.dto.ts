@@ -14,3 +14,13 @@ export interface AccountDto {
   balance: number;
   accountNumber: string;
 }
+
+export interface AccountWithdrawalDto {
+  accountNumber: string;
+  amount: number;
+}
+
+export interface AccountDepositDto {
+  accountNumber: string;
+  amount: number;
+}

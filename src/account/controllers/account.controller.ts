@@ -24,11 +24,11 @@ export class AccountController {
   @UsePipes(ValidationPipe)
   async registerAccount(@Body() dto: AccountRegistrationDto) {
     await this.accountService.registerAccount(dto);
-    return { status: 'success' };
+    return { status: 'success', id: dto.id };
   }
 
   @Get('/:id')
   async getAccountById(@Param('id') id: string): Promise<AccountDto> {
-    return await this.accountService.getAccountNumberById(id);
+    return await this.accountService.getAccountById(id);
   }
 }

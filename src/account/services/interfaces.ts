@@ -1,5 +1,9 @@
-import { AccountRegistrationDto, AccountDto } from '../dto/account.dto';
-import { Observable } from 'rxjs';
+import {
+  AccountRegistrationDto,
+  AccountDto,
+  AccountWithdrawalDto,
+  AccountDepositDto,
+} from '../dto/account.dto';
 
 export interface AccountNumberGenerator {
   next(): Promise<string>;
@@ -7,5 +11,10 @@ export interface AccountNumberGenerator {
 
 export interface AccountService {
   registerAccount(accountRegistration: AccountRegistrationDto): Promise<void>;
-  getAccountNumberById(id: string): Promise<AccountDto>;
+  getAccountById(id: string): Promise<AccountDto>;
+}
+
+export interface AccountTransactionService {
+  withdrawal(dto: AccountWithdrawalDto): Promise<void>;
+  deposit(dto: AccountDepositDto): Promise<void>;
 }
