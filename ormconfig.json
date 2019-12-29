@@ -6,7 +6,7 @@
     "password": "postgres",
     "database": "simple-bank",
     "entities": [
-        "dist/**/*.entity{.ts,.js}"
+        "src/**/*.entity{.ts,.js}"
     ],
     "migrations": [
         "migration/*.ts"

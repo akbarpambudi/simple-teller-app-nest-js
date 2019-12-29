@@ -12,6 +12,7 @@ export interface AccountNumberGenerator {
 export interface AccountService {
   registerAccount(accountRegistration: AccountRegistrationDto): Promise<void>;
   getAccountById(id: string): Promise<AccountDto>;
+  getAccountByAccountNumber(accountNumber: string): Promise<AccountDto>;
 }
 
 export interface AccountTransactionService {

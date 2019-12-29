@@ -17,6 +17,10 @@ import { AccountNumberSequence } from './account/entities/account-number-sequenc
       database: 'simple-bank',
       entities: [Account, AccountNumberSequence],
       synchronize: true,
+      extra: {
+        connectionLimit: 200,
+        max: 200,
+      },
     }),
   ],
 })

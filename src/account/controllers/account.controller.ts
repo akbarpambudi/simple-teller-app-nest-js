@@ -31,4 +31,10 @@ export class AccountController {
   async getAccountById(@Param('id') id: string): Promise<AccountDto> {
     return await this.accountService.getAccountById(id);
   }
+  @Get('/account-number/:accountNumber')
+  async getAccountByAccountNumber(
+    @Param('accountNumber') accountNumber: string,
+  ): Promise<AccountDto> {
+    return await this.accountService.getAccountByAccountNumber(accountNumber);
+  }
 }

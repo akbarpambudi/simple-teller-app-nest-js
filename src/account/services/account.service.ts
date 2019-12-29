@@ -34,4 +34,18 @@ export class AccountServiceImpl implements AccountService {
       id: account.id,
     };
   }
+
+  async getAccountByAccountNumber(accountNumber: string): Promise<AccountDto> {
+    const account = await this.repository.findByAccountNumber(accountNumber);
+    if (account == null) {
+      throw new Error(
+        `customer with account number ${accountNumber} was not found`,
+      );
+    }
+    return {
+      accountNumber: account.accountNumber,
+      balance: account.balance,
+      id: account.id,
+    };
+  }
 }

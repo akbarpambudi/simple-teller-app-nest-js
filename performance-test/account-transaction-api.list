@@ -1,0 +1,3 @@
+PUT http://localhost:3000/account/transaction/deposit
+Content-Type: application/json
+@./performance-test/sampler/account-deposit.json

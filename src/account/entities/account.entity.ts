@@ -1,12 +1,13 @@
-import { Entity, PrimaryColumn, Column } from 'typeorm';
+import { Entity, PrimaryColumn, Column, Index, Unique } from 'typeorm';
 
 @Entity()
 export class Account {
   @PrimaryColumn()
   id: string;
-  @Column({ length: 50 })
+  @Index()
+  @Column({ length: 50, unique: true })
   accountNumber: string;
-  @Column()
+  @Column({ type: 'bigint' })
   balance: number;
   @Column()
   customerId: string;
@@ -14,10 +15,10 @@ export class Account {
   creator: string;
 
   debit(amount: number): void {
-    this.balance -= amount;
+    this.balance = Number(this.balance) - Number(amount);
   }
 
   credit(amount: number): void {
-    this.balance += amount;
+    this.balance = Number(this.balance) + Number(amount);
   }
 }
