@@ -4,10 +4,14 @@ import { AccountModule } from './account/account.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Account } from './account/entities/account.entity';
 import { AccountNumberSequence } from './account/entities/account-number-sequence.entity';
+import { TransactionModule } from './transaction/transaction.module';
+import { Transaction } from './transaction/entities/transaction.entity';
+import { TransactionSplit } from './transaction/entities/transaction-split.entity';
 
 @Module({
   imports: [
     AccountModule,
+    TransactionModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: '192.168.99.100',
@@ -15,7 +19,7 @@ import { AccountNumberSequence } from './account/entities/account-number-sequenc
       username: 'postgres',
       password: 'postgres',
       database: 'simple-bank',
-      entities: [Account, AccountNumberSequence],
+      entities: [Account, AccountNumberSequence, Transaction, TransactionSplit],
       synchronize: true,
       extra: {
         connectionLimit: 200,

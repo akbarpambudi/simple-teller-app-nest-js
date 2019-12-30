@@ -5,6 +5,7 @@ import { TransactionCreatedEvent } from './../event/transaction-created.event';
 import { map, flatMap } from 'rxjs/operators';
 import { TransactionSplitDto } from '../dto/transaction-split.dto';
 import { UpdateAccountBalanceCommand } from './../../account/command/update-account-balance.command';
+import { TransactionTypeUtil } from '../enum/transaction-type.enum';
 
 @Injectable()
 export class CreateTransactionSaga {
@@ -24,7 +25,7 @@ export class CreateTransactionSaga {
     return new UpdateAccountBalanceCommand(
       splitTransaction.accountNumber,
       splitTransaction.amount,
-      splitTransaction.type,
+      TransactionTypeUtil.fromString(splitTransaction.type),
     );
   };
 }

@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { AccountController } from './controllers/account.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Account } from './entities/account.entity';
 import { AccountNumberSequence } from './entities/account-number-sequence.entity';
 import { AccountServiceImpl } from './services/account.service';
 import { AccountNumberSequenceService } from './services/account-number-sequence.service';
@@ -12,13 +11,18 @@ import {
 } from './di-token.constant';
 import { SharedModule } from 'src/shared/shared.module';
 import { AccountTransactionServiceImpl } from './services/account-transaction.service';
-import { AccountTransactionController } from './controllers/account-transaction.controller';
 import { AccountRepository } from './repository/account.repository';
+import { UpdateAccountBalanceCommandHandler } from './command/handler/update-account-balance.command-handler';
+import { CqrsModule } from '@nestjs/cqrs';
+
+const commandHandlers = [UpdateAccountBalanceCommandHandler];
+const sagas = [];
 @Module({
-  controllers: [AccountController, AccountTransactionController],
+  controllers: [AccountController],
   imports: [
     TypeOrmModule.forFeature([AccountRepository, AccountNumberSequence]),
     SharedModule,
+    CqrsModule,
   ],
   providers: [
     { provide: ACCOUNT_SERVICE, useClass: AccountServiceImpl },
@@ -30,6 +34,7 @@ import { AccountRepository } from './repository/account.repository';
       provide: ACCOUNT_TRANSACTION_SERVICE,
       useClass: AccountTransactionServiceImpl,
     },
+    ...commandHandlers,
   ],
 })
 export class AccountModule {}

@@ -13,6 +13,10 @@ import {
   Entity,
 } from 'typeorm';
 import { TransactionCreatedEvent } from '../event/transaction-created.event';
+import {
+  TransactionType,
+  TransactionTypeUtil,
+} from '../enum/transaction-type.enum';
 @Entity()
 export class Transaction extends AggregateRoot {
   @PrimaryColumn()
@@ -36,6 +40,7 @@ export class Transaction extends AggregateRoot {
   @OneToMany(
     type => TransactionSplit,
     split => split.transaction,
+    { cascade: true },
   )
   splits: TransactionSplit[];
 
@@ -49,7 +54,7 @@ export class Transaction extends AggregateRoot {
       const split = new TransactionSplit();
       split.accountNumber = splitDto.accountNumber;
       split.amount = splitDto.amount;
-      split.type = split.type;
+      split.type = TransactionTypeUtil.fromString(splitDto.type);
       return split;
     });
 

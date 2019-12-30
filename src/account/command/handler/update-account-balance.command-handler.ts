@@ -5,7 +5,6 @@ import { AccountTransactionService } from 'src/account/services/interfaces';
 import { ACCOUNT_TRANSACTION_SERVICE } from 'src/account/di-token.constant';
 import { TransactionType } from 'src/account/enum/transaction-type.enum';
 @CommandHandler(UpdateAccountBalanceCommand)
-@Injectable()
 export class UpdateAccountBalanceCommandHandler
   implements ICommandHandler<UpdateAccountBalanceCommand> {
   constructor(
