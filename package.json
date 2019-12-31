@@ -12,6 +12,7 @@
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/src/main",
+    "documentation:build": "npx compodoc -p tsconfig.json",
     "documentation:serve": "npx compodoc -p tsconfig.json --port 8081 -s",
     "prestart:prod:pm2": "npm run build",
     "start:prod:pm2": "pm2 start dist/src/main.js -n teller-app -i 4",
