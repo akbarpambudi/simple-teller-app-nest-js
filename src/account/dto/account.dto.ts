@@ -1,11 +1,15 @@
 import { IsNotEmpty, IsUUID } from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
 export class AccountRegistrationDto {
   @IsNotEmpty()
   @IsUUID()
+  @ApiProperty()
   id: string;
   @IsNotEmpty()
+  @ApiProperty()
   customerId: string;
   @IsNotEmpty()
+  @ApiProperty()
   creator: string;
 }
 
