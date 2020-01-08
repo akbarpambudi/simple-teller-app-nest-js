@@ -8,11 +8,13 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { Transaction } from './entities/transaction.entity';
 import { TransactionSplit } from './entities/transaction-split.entity';
 import { TransactionRepository } from './repository/transaction.repository';
+import { SharedModule } from 'src/shared/shared.module';
 
 const commandHandlers = [CreateTransactionCommandHandler];
 const sagas = [CreateTransactionSaga];
 @Module({
   imports: [
+    SharedModule,
     TypeOrmModule.forFeature([TransactionRepository, TransactionSplit]),
     CqrsModule,
   ],

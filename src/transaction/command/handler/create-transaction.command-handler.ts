@@ -13,7 +13,7 @@ export class CreateTransactionCommandHandler
   ) {}
 
   async execute(command: CreateTransactionCommand): Promise<any> {
-    const transaction = Transaction.FromCreateAccountCommand(command);
+    const transaction = Transaction.fromCreateAccountCommand(command);
     console.log(transaction.splits);
     const insertedTransaction = this.publisher.mergeObjectContext(
       await this.repository.save(transaction),

@@ -1,6 +1,7 @@
 export enum ErrorType {
-  INTERNAL_SERVER_ERROR,
-  BAD_REQUEST,
+  INTERNAL_SERVER_ERROR = 500,
+  BAD_REQUEST = 400,
+  UNAUTHORIZED = 401,
 }
 
 export class CodedError extends Error {

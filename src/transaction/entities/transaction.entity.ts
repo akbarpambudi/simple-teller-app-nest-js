@@ -44,7 +44,7 @@ export class Transaction extends AggregateRoot {
   )
   splits: TransactionSplit[];
 
-  static FromCreateAccountCommand(command: CreateTransactionCommand) {
+  static fromCreateAccountCommand(command: CreateTransactionCommand) {
     const transaction = new Transaction();
     transaction.id = command.id;
     transaction.actor = command.actor;

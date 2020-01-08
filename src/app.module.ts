@@ -7,11 +7,17 @@ import { AccountNumberSequence } from './account/entities/account-number-sequenc
 import { TransactionModule } from './transaction/transaction.module';
 import { Transaction } from './transaction/entities/transaction.entity';
 import { TransactionSplit } from './transaction/entities/transaction-split.entity';
+import { AuthModule } from './auth/auth.module';
+import { UserModule } from './user/user.module';
+import { User } from './user/entities/user.entity';
 
 @Module({
   imports: [
     AccountModule,
     TransactionModule,
+    // ,
+    UserModule,
+    AuthModule,
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: '192.168.99.100',
@@ -19,7 +25,13 @@ import { TransactionSplit } from './transaction/entities/transaction-split.entit
       username: 'postgres',
       password: 'postgres',
       database: 'simple-bank',
-      entities: [Account, AccountNumberSequence, Transaction, TransactionSplit],
+      entities: [
+        Account,
+        AccountNumberSequence,
+        Transaction,
+        TransactionSplit,
+        User,
+      ],
       synchronize: true,
       extra: {
         connectionLimit: 200,

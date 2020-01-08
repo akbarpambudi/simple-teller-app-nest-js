@@ -5,6 +5,7 @@ import {
   InternalServerErrorException,
   Injectable,
   BadRequestException,
+  UnauthorizedException,
 } from '@nestjs/common';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
@@ -22,16 +23,6 @@ export class ErrorHandlerInterceptor implements NestInterceptor {
           return throwError(CodedError.fromError(err));
         }
         return throwError(err);
-      }),
-      catchError(err => {
-        console.log(err);
-        if (err.type == ErrorType.INTERNAL_SERVER_ERROR) {
-          return throwError(
-            new InternalServerErrorException(err.message, err.code),
-          );
-        } else if (err.type == ErrorType.BAD_REQUEST) {
-          return throwError(new BadRequestException(err.message, err.code));
-        }
       }),
     );
   }
