@@ -9,7 +9,6 @@ export class CodedErrorExceptionFilter implements ExceptionFilter {
     const ctx = host.switchToHttp();
     const response = ctx.getResponse<FastifyReply<any>>();
     const status = exception.type;
-    console.log(response);
 
     response.status(status).send(exception);
   }
