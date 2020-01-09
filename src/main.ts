@@ -20,7 +20,6 @@ function setupSwagger(app: INestApplication) {
 }
 
 function setupGlobalExceptionHandler(app: INestApplication) {
-  app.useGlobalInterceptors(new ErrorHandlerInterceptor());
   app.useGlobalFilters(new CodedErrorExceptionFilter());
 }
 

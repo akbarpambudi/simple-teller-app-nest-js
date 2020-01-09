@@ -10,6 +10,8 @@ import { TransactionSplit } from './transaction/entities/transaction-split.entit
 import { AuthModule } from './auth/auth.module';
 import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
+import { CustomerModule } from './customer/customer.module';
+import { Customer } from './customer/entities/customer.entity';
 
 @Module({
   imports: [
@@ -31,6 +33,7 @@ import { User } from './user/entities/user.entity';
         Transaction,
         TransactionSplit,
         User,
+        Customer,
       ],
       synchronize: true,
       extra: {
@@ -38,6 +41,7 @@ import { User } from './user/entities/user.entity';
         max: 200,
       },
     }),
+    CustomerModule,
   ],
 })
 export class AppModule {}
