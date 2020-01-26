@@ -14,15 +14,18 @@ import { AccountTransactionServiceImpl } from './services/account-transaction.se
 import { AccountRepository } from './repository/account.repository';
 import { UpdateAccountBalanceCommandHandler } from './command/handler/update-account-balance.command-handler';
 import { CqrsModule } from '@nestjs/cqrs';
+import { CreateAccountCommandHandler } from './command/handler/create-account.command-handler';
 
-const commandHandlers = [UpdateAccountBalanceCommandHandler];
+const commandHandlers = [
+  UpdateAccountBalanceCommandHandler,
+  CreateAccountCommandHandler,
+];
 const sagas = [];
 @Module({
   controllers: [AccountController],
   imports: [
     TypeOrmModule.forFeature([AccountRepository, AccountNumberSequence]),
     SharedModule,
-    CqrsModule,
   ],
   providers: [
     { provide: ACCOUNT_SERVICE, useClass: AccountServiceImpl },

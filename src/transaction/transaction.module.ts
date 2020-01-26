@@ -16,7 +16,6 @@ const sagas = [CreateTransactionSaga];
   imports: [
     SharedModule,
     TypeOrmModule.forFeature([TransactionRepository, TransactionSplit]),
-    CqrsModule,
   ],
   controllers: [TransactionController],
   providers: [...commandHandlers, ...sagas],

@@ -12,6 +12,8 @@ import { UserModule } from './user/user.module';
 import { User } from './user/entities/user.entity';
 import { CustomerModule } from './customer/customer.module';
 import { Customer } from './customer/entities/customer.entity';
+import { RegistrationModule } from './registration/registration.module';
+import { RegistrationState } from './registration/entities/registration-state.entity';
 
 @Module({
   imports: [
@@ -34,6 +36,7 @@ import { Customer } from './customer/entities/customer.entity';
         TransactionSplit,
         User,
         Customer,
+        RegistrationState,
       ],
       synchronize: true,
       extra: {
@@ -42,6 +45,7 @@ import { Customer } from './customer/entities/customer.entity';
       },
     }),
     CustomerModule,
+    RegistrationModule,
   ],
 })
 export class AppModule {}

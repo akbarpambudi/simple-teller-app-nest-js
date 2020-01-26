@@ -4,6 +4,7 @@ import { AccountRegistrationDto, AccountDto } from '../dto/account.dto';
 import { AccountRepository } from './../repository/account.repository';
 import { Account } from './../entities/account.entity';
 import { ACCOUNT_NUMBER_GENERATOR } from '../di-token.constant';
+import { AccountCreatedEvent } from '../event/account-created.event';
 
 @Injectable()
 export class AccountServiceImpl implements AccountService {
@@ -15,14 +16,22 @@ export class AccountServiceImpl implements AccountService {
 
   async registerAccount(
     accountRegistration: AccountRegistrationDto,
-  ): Promise<void> {
+  ): Promise<Account> {
     const account = new Account();
     account.accountNumber = await this.accountNumberGenerator.next();
     account.balance = 0;
     account.creator = accountRegistration.creator;
     account.customerId = accountRegistration.customerId;
     account.id = accountRegistration.id;
-    await this.repository.save(account);
+    const createdAccount = await this.repository.save(account);
+    account.apply(
+      new AccountCreatedEvent(
+        account.id,
+        account.accountNumber,
+        account.customerId,
+      ),
+    );
+    return createdAccount;
   }
 
   async getAccountById(id: string): Promise<AccountDto> {

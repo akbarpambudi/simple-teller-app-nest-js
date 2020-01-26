@@ -1,7 +1,8 @@
 import { Entity, PrimaryColumn, Column, Index, Unique } from 'typeorm';
+import { AggregateRoot } from '@nestjs/cqrs';
 
 @Entity()
-export class Account {
+export class Account extends AggregateRoot {
   @PrimaryColumn()
   id: string;
   @Index()

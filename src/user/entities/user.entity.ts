@@ -1,5 +1,6 @@
 import { Entity, Column, PrimaryColumn, Unique } from 'typeorm';
 import { UserModule } from '../user.module';
+import { AggregateRoot } from '@nestjs/cqrs';
 
 export class BruteForcePreventive {
   @Column()
@@ -22,7 +23,7 @@ export class BruteForcePreventive {
 
 @Entity()
 @Unique('username', ['username'])
-export class User {
+export class User extends AggregateRoot {
   @PrimaryColumn()
   id: string;
   @Column()

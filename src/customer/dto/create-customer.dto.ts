@@ -2,7 +2,16 @@ import { Gender } from '../enum/gender.enum';
 import { IdentityCardTypes } from 'src/shared/entities/types/identity-card';
 import { IsNotEmpty, IsUUID } from 'class-validator';
 
-export class CreateCustomerDto {
+export interface CustomerProperties {
+  id: string;
+  name: string;
+  idCardType: string;
+  idCardNumber: string;
+  gender: Gender;
+  address: string;
+  userId: string;
+}
+export class CreateCustomerDto implements CustomerProperties {
   @IsNotEmpty()
   @IsUUID()
   id: string;

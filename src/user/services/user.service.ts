@@ -12,16 +12,16 @@ export class UserService {
     private readonly encryptStrategy: BcryptPasswordEncryptionService,
   ) {}
 
-  async createUser(dto: CreateUserDto): Promise<void> {
+  async createUser(dto: CreateUserDto): Promise<User> {
     const user = new User();
     user.id = dto.id;
     user.isActive = true;
-    user.username = dto.name.replace(/s/, '');
+    user.username = dto.name.replace(/\s/g, '');
     user.password = await this.encryptStrategy.encrypt(dto.password);
     user.bruteForcePreventive = new BruteForcePreventive();
     user.bruteForcePreventive.invalidAccessThreshold = 3;
     user.bruteForcePreventive.invalidAccessCounter = 0;
-    await this.repository.save(user);
+    return await this.repository.save(user);
   }
 
   async findUserByUsername(username: string): Promise<User> {

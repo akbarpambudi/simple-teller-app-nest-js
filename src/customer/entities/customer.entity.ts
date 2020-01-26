@@ -7,9 +7,10 @@ import {
   Column,
   PrimaryColumn,
 } from 'typeorm';
+import { AggregateRoot } from '@nestjs/cqrs';
 
 @Entity()
-export class Customer {
+export class Customer extends AggregateRoot {
   @PrimaryColumn()
   id: string;
   @Column(type => IdentityCard)
